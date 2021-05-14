@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+
+{% block subtitle %}Slangs{% endblock subtitle %}
+
+
+{% block content %}
+    <h1>Slangs</h1>
+    <br>
+    <div class="page-content page-container" id="page-content">
+        <div class="padding">
+            <div class="row container d-flex justify-content-center">
+                <div class="col-lg-8 grid-margin stretch-card">
+                    <div class="card">
+                        <div class="card-body">
+
+                            <h4 class="card-title">Slangs</h4>
+
+                            <p class="card-description">
+                                Click <a href="javascript:addSlang()">here</a> to add new slang
+                            </p>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Slang</th>
+                                            <th>ID No.</th>
+                                            <th>Created On</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="slang-dump">
+                                        <!-- SLANGS GO HERE -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const dumpSlang = ( {slang, id, date} ) => {
+            let el = `<tr id="slang-${id}">
+                        <td>${slang}</td>
+                        <td>${id}</td>
+                        <td>${date}</td>
+                        <td> <a href="javascript:removeSlang(${id})"> Delete </a> </td>
+                    </tr>`; 
+            $( '#slang-dump' ).append( el );
+            return el;
+        }
+
+        const popSlang = id => $( `#slang-${id}` ).remove();
+
+    </script>
+{% endblock content %}
+
+{%block additional_js%}
+    <script type="text/javascript" src="{{url_for('static', filename='slangs.js')}}"></script>
+{%endblock%}

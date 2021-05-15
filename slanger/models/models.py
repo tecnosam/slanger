@@ -85,7 +85,7 @@ class Profile( db.Model ):
 
         _profile.profile_url = profile_url
 
-        if 'tag' is not None:
+        if tag is not None:
             _profile.tag = tag
 
         db.session.commit()

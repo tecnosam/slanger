@@ -35,8 +35,8 @@ comment_parser = reqparse.RequestParser(  )
 # comment_parser.add_argument( 'slangs', required = True, 
 #         type=str, help = "The slang(s) that where matched" )
 
-comment_parser.add_argument( 'fb-access-token', required = True, type = str,
-                help = "Your secret key would be used to crawl fb" )
+# comment_parser.add_argument( 'fb-access-token', required = True, type = str,
+#                 help = "Your secret key would be used to crawl fb" )
 
 class CRUDComment( Resource ):
 

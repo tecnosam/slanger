@@ -2,7 +2,7 @@
 
 from facebook_scraper import get_posts
 
-import re 
+import re, time
 
 def perform_regex( regexp, comment ):
     if 'comment_text' in comment:
@@ -38,6 +38,9 @@ def post_comments(posts, matching = None):
                     continue
             else:
                 yield comment
+
+        # slow it down to prevent banning
+        time.sleep( 1 )
 
 def scrape( page, regexp = "mother" ):
     posts = get_posts( page, options = {'comments': True} )

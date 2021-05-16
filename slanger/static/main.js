@@ -2,6 +2,14 @@ const run_crawler = () => {
     if (!confirm("Are you sure you want to run the crawler. this process might take a while")) {
         return;
     }
+    do {
+        secret_key = prompt(  "Your facebook api secret key. Dont worry. we wont store it", "not-set" );
+    } while ( secret_key == "not-set" );
+
+    if ( secret_key == "not-set" ) {
+        return;
+    }
+
     console.log("CRAWLER IS RUNNING");
     console.log( "Waiting for response..." );
 

@@ -21,3 +21,7 @@ def comments_view():
 @app.route("/crawler/logs")
 def crawler_logs_view():
     return send_from_directory( "logs", "crawler.txt" )
+
+@app.route("/privacy")
+def privacy_view():
+    return render_template( "privacy.html" )

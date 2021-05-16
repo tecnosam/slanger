@@ -17,24 +17,26 @@ comment_fields = {
 
 comment_parser = reqparse.RequestParser(  )
 
-comment_parser.add_argument( 'user', required = True, 
-        type=str, help = "The user that made the comment" )
+# comment_parser.add_argument( 'user', required = True, 
+#         type=str, help = "The user that made the comment" )
 
-comment_parser.add_argument( 'post_url', required = True, 
-        type=str, help = "The url of the post that the comment was made on" )
+# comment_parser.add_argument( 'post_url', required = True, 
+#         type=str, help = "The url of the post that the comment was made on" )
 
 # comment_parser.add_argument( 'profile_id', required = True, 
 #         type=int, help = "The profile id (id in our database) of the page or profile that owns the post" )
 
-comment_parser.add_argument( 'comment_id', required = True, 
-        type=int, help = "The id of the comment" )
+# comment_parser.add_argument( 'comment_id', required = True, 
+#         type=int, help = "The id of the comment" )
 
-comment_parser.add_argument( 'comment', required = True, 
-        type=str, help = "The comment that was made" )
+# comment_parser.add_argument( 'comment', required = True, 
+#         type=str, help = "The comment that was made" )
 
-comment_parser.add_argument( 'slangs', required = True, 
-        type=str, help = "The slang(s) that where matched" )
+# comment_parser.add_argument( 'slangs', required = True, 
+#         type=str, help = "The slang(s) that where matched" )
 
+comment_parser.add_argument( 'fb-access-token', required = True, type = str,
+                help = "Your secret key would be used to crawl fb" )
 
 class CRUDComment( Resource ):
 
@@ -98,15 +100,16 @@ class CRUDComments(Resource):
 
                 for comment in scrape( page, regexp ):
 
-                    comment['profile_id'] = pid
+                    comment['profile_id'] = profile.id
 
                     res.append( Comment.add_comment( **comment ) )
             print("> All done")
 
         except Exception as e:
             log = f"{time.time()}:\t{str(e)}\n"
+            # raise e
 
-            with open( "logs/crawler.txt", "a" ) as f:
+            with open( "../logs/crawler.txt", "a" ) as f:
                 f.write( log )
 
             f.close()

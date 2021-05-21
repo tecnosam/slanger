@@ -1,0 +1,5 @@
+env/
+.vscode/
+slanger/.env
+app/database.db
+__pycache__/

@@ -1,7 +1,9 @@
 const run_crawler = () => {
+
     if (!confirm("Are you sure you want to run the crawler. this process might take a while")) {
         return;
     }
+
     // do {
     //     secret_key = prompt(  "Your facebook api secret key. Dont worry. we wont store it", "not-set" );
     // } while ( secret_key == "not-set" );
@@ -17,7 +19,6 @@ const run_crawler = () => {
 
     // return;
 
-    $('#comment-dump').html("");
 
     $.ajax({
         url: "/comments/0",
@@ -25,9 +26,18 @@ const run_crawler = () => {
         type: "POST",
         success: function( comments ) {
 
+
+
+            if (comments == -1) {
+                alert( "Crawler has been executed 3 times and cannot run till tommorow" )
+                console.log( "Maximum run time reached" )
+                return;
+            }
+
             console.log("Crawler has finished executing");
 
             console.log("Dumping comments in GUI...");
+            $('#comment-dump').html("");
 
             for ( let comment of comments ) {
 

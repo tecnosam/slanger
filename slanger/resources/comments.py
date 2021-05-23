@@ -60,6 +60,9 @@ class CRUDComment( Resource ):
         return _comment
 
 class CRUDComments(Resource):
+
+    ran_t = 0
+    ran_max = 3
     @marshal_with( comment_fields )
     def get( self, pid ):
 
@@ -71,9 +74,13 @@ class CRUDComments(Resource):
 
     @marshal_with( comment_fields )
     def post( self, pid ):
+        # if ( self.ran_k == self.ran_max ):
+        #     return -1
         res = list()
-        
+
         print("> Fetching profiles...")
+
+
         if pid != 0:
             profiles = (Profile.query.get( pid ))
             if profiles[0] is None:
@@ -82,9 +89,11 @@ class CRUDComments(Resource):
             profiles = Profile.query.all()
 
         print( "> Fetched profiles" )
+
         print( "> Executing crawler..." )
 
         old = marshal( Comment.empty_comments(), comment_fields )
+
 
         try:
             for profile in profiles:
@@ -123,5 +132,7 @@ class CRUDComments(Resource):
             abort( Response( 
                 "Error: (500) Sorry about that, there seems to be an error on the server. you can contact the developer", 500 
             ))
+        
+        self.ran_t += 1
 
         return res

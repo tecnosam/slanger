@@ -39,8 +39,9 @@ def post_comments(posts, matching = None):
             else:
                 yield comment
 
+            time.sleep( 2 )
+
         # slow it down to prevent banning
-        time.sleep( 1 )
 
 def scrape( page, regexp = "mother" ):
     posts = get_posts( page, options = {'comments': True} )

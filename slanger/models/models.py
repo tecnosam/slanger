@@ -5,7 +5,7 @@ import datetime
 class Slang(db.Model):
     # slangs we're looking for
 
-    id = db.Column( db.Integer, primary_key = True, auto_increment = True )
+    id = db.Column( db.Integer, primary_key = True, autoincrement = True )
 
     slang = db.Column( db.String(40), unique = True, nullable = False )
 
@@ -56,7 +56,7 @@ class Slang(db.Model):
 class Profile( db.Model ):
     # facebook profile or page in which we would be crawling
 
-    id = db.Column( db.Integer, primary_key = True, auto_increment = True )
+    id = db.Column( db.Integer, primary_key = True, autoincrement = True )
 
     profile_url = db.Column( db.String(200 ) , unique = True )
 
@@ -109,7 +109,7 @@ class Profile( db.Model ):
 class Comment( db.Model ):
     # comment found containing slang
 
-    id = db.Column( db.Integer, primary_key = True, auto_increment = True )
+    id = db.Column( db.Integer, primary_key = True, autoincrement = True )
 
     user = db.Column( db.String(100), nullable = False )
 

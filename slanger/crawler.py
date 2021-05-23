@@ -15,8 +15,9 @@ def perform_regex( regexp, comment ):
 
 
 def post_comments(posts, matching = None):
+    i = 0
     for post in posts:
-        print( "post " )
+        print( "post ", i )
         comments = post['comments_full']
         if (comments is None):
             return
@@ -40,10 +41,13 @@ def post_comments(posts, matching = None):
                 yield comment
 
             time.sleep( 2 )
+        
+        i += 1
 
         # slow it down to prevent banning
 
 def scrape( page, regexp = "mother" ):
+    regexp = regexp.lower()
     posts = get_posts( page, options = {'comments': True} )
 
     comments = ( comment for comment in post_comments(posts, regexp) )

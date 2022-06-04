@@ -8,8 +8,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-# access_token = os.getenv("FB_ACCESS_TOKEN")
-access_token = '501047351025171|6ecee5e1d01303d695613d1e4a84e2a7'
+access_token = os.getenv("FB_ACCESS_TOKEN")
 print(access_token)
 user = 'leehsienloong'
 
